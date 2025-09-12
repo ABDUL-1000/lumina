@@ -10,8 +10,8 @@ import { ThemeProvider } from "@/components/ThemeProvider"
 
 export const metadata: Metadata = {
   title: "AI Creative Platform",
-  description: "Generate amazing content with AI tools",
-  generator: "v0.app",
+  description: "AI Creative Platform",
+  
 }
 
 export default function RootLayout({
