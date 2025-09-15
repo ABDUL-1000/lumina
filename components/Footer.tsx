@@ -48,7 +48,7 @@ export function Footer() {
           >
             <div className="flex items-center gap-2">
               <Image 
-                src="/Lumina_Logo_Update_1-removebg-preview 1.png" 
+                src="/logo.png" 
                 alt="Lumina Green 360 Logo" 
                 width={90} 
                 height={70} 
