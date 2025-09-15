@@ -29,7 +29,7 @@ export function Footer() {
       url: "http://wa.me/2347079100046"
     },
     {
-      src: "/facebook.png", // Make sure you have a Facebook icon in your public folder
+      src: "/facebook.png", 
       alt: "Facebook",
       url: "https://www.facebook.com/share/1EKTAAPYA6/"
     }
