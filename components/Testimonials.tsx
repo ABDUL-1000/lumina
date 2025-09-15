@@ -56,7 +56,7 @@ export function Testimonials() {
   }
 
   return (
-    <section className="w-full py-20">
+    <section className="w-full sm:py-20 ">
       <div className="container mx-auto px-4">
         <motion.div 
           className="text-center mb-16"
@@ -65,7 +65,7 @@ export function Testimonials() {
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-3xl lg:text-5xl leading-15 font-bold text-foreground mb-4">
+          <h2 className="text-2xl lg:text-5xl sm:leading-15 font-bold text-foreground mb-2">
             Trusted by <span className="text-muted-foreground">Homes</span> &{" "}
             <span className="text-muted-foreground">Businesses</span> in Maiduguri
           </h2>
@@ -73,7 +73,7 @@ export function Testimonials() {
 
         <div className="mx-auto relative">
           <Card className="border-0 shadow-none">
-            <CardContent className="p-15 text-start border-0 min-h-[200px]">
+            <CardContent className="lg:p-15 text-start border-0 min-h-[200px]">
               <AnimatePresence mode="wait" custom={direction}>
                 <motion.div
                   key={currentIndex}
@@ -84,7 +84,7 @@ export function Testimonials() {
                   exit="exit"
                   transition={{ duration: 0.5 }}
                 >
-                  <p className="text-lg text-muted-foreground mb-6 leading-10">"{testimonials[currentIndex].text}"</p>
+                  <p className="text-lg text-muted-foreground lg:mb-6 leading-10">"{testimonials[currentIndex].text}"</p>
                   <div className="flex items-start gap-3">
                     <motion.div
                       whileHover={{ scale: 1.1 }}

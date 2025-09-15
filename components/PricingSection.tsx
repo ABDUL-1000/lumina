@@ -82,7 +82,7 @@ export function PricingSection() {
               transition={{ duration: 0.7, delay: 0.2 }}
             >
               <Card 
-                className="flex-grow mb-6 h-[70%]" 
+                className="flex-grow mb-6 " 
                 style={{ borderColor: pricingPlans[0].borderColor, borderWidth: '2px' }}
               >
                 <CardHeader className="text-center">

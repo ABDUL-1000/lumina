@@ -36,7 +36,7 @@ export function GettingStarted() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-xl lg:text-4xl leading-15 font-bold text-foreground mb-4 text-balance">
+          <h2 className="text-xl lg:text-4xl sm:leading-15 text-center sm:text-start font-bold text-foreground mb-4 text-balance">
             Getting started with <span className="text-primary">Lumina Green 360</span> is{" "}
             <span className="text-muted-foreground">quick, easy</span>, and{" "}
             <span className="text-muted-foreground">stress-free</span>.
