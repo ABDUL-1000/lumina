@@ -32,7 +32,7 @@ export default function ContactUsView() {
       const body = `Name: ${formData.name}AEmail: ${formData.email}Message: ${formData.message}Sent from Lumina Green 360 website`;
       
       // Open email client
-      window.location.href = `mailto:abdullatifgiwa2019@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = `mailto:luminagreen360@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       
       // Simulate success after a short delay
       setTimeout(() => {
