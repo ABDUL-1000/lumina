@@ -84,7 +84,7 @@ export default function Home() {
         onSectionSelect={handleSectionSelect}
         onPageSelect={handlePageSelect}
       />
-      <main className="w-[95%] mx-auto">
+      <main className="w-[90%] mx-auto">
         {renderView()}
       </main>
       <Footer 

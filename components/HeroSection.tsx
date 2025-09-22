@@ -91,19 +91,7 @@ export function HeroSection() {
               />
             </motion.div>
             
-            {/* Optional floating elements for more visual interest */}
-            <motion.div
-              className="absolute -top-4 -right-4 w-20 h-20 bg-primary/10 rounded-full"
-              initial={{ scale: 0, opacity: 0 }}
-              animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
-              transition={{ duration: 0.7, delay: 0.8 }}
-            />
-            <motion.div
-              className="absolute -bottom-4 -left-4 w-16 h-16 bg-[#0D8E4B]/10 rounded-full"
-              initial={{ scale: 0, opacity: 0 }}
-              animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
-              transition={{ duration: 0.7, delay: 1 }}
-            />
+          
           </motion.div>
         </div>
       </div>

@@ -29,7 +29,7 @@ export default function ContactUsView() {
     try {
       // Simple form submission that opens user's email client
       const subject = `Contact Form Submission - ${formData.name}`;
-      const body = `Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0AMessage: ${formData.message}%0D%0A%0D%0A---%0D%0ASent from Lumina Green 360 website`;
+      const body = `Name: ${formData.name}AEmail: ${formData.email}Message: ${formData.message}Sent from Lumina Green 360 website`;
       
       // Open email client
       window.location.href = `mailto:abdullatifgiwa2019@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
