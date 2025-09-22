@@ -5,7 +5,12 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
 
-export function Footer() {
+interface FooterProps {
+  onSectionSelect?: (section: string) => void;
+  onPageSelect?: (page: string) => void;
+}
+
+export function Footer({ onSectionSelect, onPageSelect }: FooterProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
@@ -19,10 +24,8 @@ export function Footer() {
     {
       src: "/x.png",
       alt: "Twitter",
-      url: "#" // Add your Twitter URL here
+      url: "#"
     },
-
-  
     {
       src: "/whatsapp.png",
       alt: "WhatsApp",
@@ -34,6 +37,18 @@ export function Footer() {
       url: "https://www.facebook.com/share/1EKTAAPYA6/"
     }
   ];
+
+  const handleSectionClick = (section: string) => {
+    if (onSectionSelect) {
+      onSectionSelect(section);
+    }
+  }
+
+  const handlePageClick = (page: string) => {
+    if (onPageSelect) {
+      onPageSelect(page);
+    }
+  }
 
   return (
     <footer ref={ref} className="w-full bg-white text-foreground py-12">
@@ -67,16 +82,27 @@ export function Footer() {
           >
             <h3 className="font-semibold mb-4 text-foreground">Quick Links</h3>
             <ul className="space-y-2 text-sm">
-              {["Home", "About Us", "Services", "Pricing", "Testimonials", "FAQs", "Contact Us"].map((link, index) => (
+              {[
+                { name: "Home", type: "section", id: "home" },
+                { name: "About Us", type: "page", id: "about" },
+                { name: "Services", type: "section", id: "services" },
+                { name: "Pricing", type: "section", id: "pricing" },
+                { name: "Testimonials", type: "section", id: "testimonials" },
+                { name: "FAQs", type: "section", id: "faqs" },
+                { name: "Contact Us", type: "page", id: "contact" }
+              ].map((link, index) => (
                 <motion.li
-                  key={link}
+                  key={link.name}
                   initial={{ opacity: 0, x: -10 }}
                   animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
                   transition={{ duration: 0.4, delay: 0.3 + index * 0.05 }}
                 >
-                  <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                    {link}
-                  </a>
+                  <button
+                    onClick={() => link.type === 'section' ? handleSectionClick(link.id) : handlePageClick(link.id)}
+                    className="text-muted-foreground hover:text-foreground transition-colors text-left w-full"
+                  >
+                    {link.name}
+                  </button>
                 </motion.li>
               ))}
             </ul>
@@ -111,16 +137,23 @@ export function Footer() {
           >
             <h3 className="font-semibold mb-4 text-foreground">Legal</h3>
             <ul className="space-y-2 text-sm">
-              {["Privacy Policy", "Terms & Conditions", "Refund Policy"].map((legal, index) => (
+              {[
+                { name: "Privacy Policy", type: "page", id: "privacy" },
+                { name: "Terms & Conditions", type: "page", id: "privacy" },
+                { name: "Refund Policy", type: "page", id: "privacy" }
+              ].map((legal, index) => (
                 <motion.li
-                  key={legal}
+                  key={legal.name}
                   initial={{ opacity: 0, x: -10 }}
                   animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
                   transition={{ duration: 0.4, delay: 0.5 + index * 0.05 }}
                 >
-                  <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                    {legal}
-                  </a>
+                  <button
+                    onClick={() => handlePageClick(legal.id)}
+                    className="text-muted-foreground hover:text-foreground transition-colors text-left w-full"
+                  >
+                    {legal.name}
+                  </button>
                 </motion.li>
               ))}
             </ul>

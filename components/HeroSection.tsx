@@ -6,6 +6,7 @@ import Image from "next/image"
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
+import Link from "next/link";
 
 export function HeroSection() {
   const ref = useRef(null)
@@ -49,7 +50,9 @@ export function HeroSection() {
               className="flex items-center justify-center lg:justify-start"
             >
               <Button className="rounded-full bg-gradient-to-r to-[#0B5A33] from-[#0D8E4B]">
-                Book a Pickup 
+              <Link href="http://wa.me/2347079100046">
+                  Book a Pickup 
+                  </Link>
                 <motion.span 
                   className="ml-2"
                   animate={{ x: [0, 5, 0] }}

@@ -5,8 +5,14 @@ import { ChevronRight, Menu, X } from "lucide-react"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { useState, useEffect } from "react"
+import Link from "next/link"
 
-export function Header() {
+interface HeaderProps {
+  onSectionSelect?: (section: string) => void;
+  onPageSelect?: (page: string) => void;
+}
+
+export function Header({ onSectionSelect, onPageSelect }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
 
@@ -24,44 +30,85 @@ export function Header() {
     }
   }, [])
 
+  const handleSectionClick = (section: string) => {
+    if (onSectionSelect) {
+      onSectionSelect(section);
+    }
+    setMobileMenuOpen(false);
+  }
+
+  const handlePageClick = (page: string) => {
+    if (onPageSelect) {
+      onPageSelect(page);
+    }
+    setMobileMenuOpen(false);
+  }
+
   return (
     <>
-      <header className="sm:w-[90%] w-full mx-auto border rounded-full  sticky top-0 z-50 border-border bg-white backdrop-blur supports-[backdrop-filter]:bg-white/95">
-        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+      <header className="sm:w-[95%] w-full mx-auto border sm:rounded-full sticky top-0 z-50 border-border bg-white backdrop-blur supports-[backdrop-filter]:bg-white/95">
+        <div className="container mx-auto p-4 flex items-center justify-between">
           {/* Left side - Logo */}
-          <div className="flex items-center gap-8">
-            <div className="flex items-center gap-2">
-              <Image src="/logo.png" alt="Company Logo" width={40} height={40} className="w-10 h-10"/>
-             
-            </div>
-
+          <div className="flex items-center gap-2">
+            <Image src="/logo.png" alt="Company Logo" width={40} height={40} className="w-10 h-10"/>
+          </div>
+          
+          <div className="flex items-center justify-between gap-4">
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-6">
-              <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">Home</a>
-              <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">About Us</a>
-              <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">Services</a>
-              <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">Pricing</a>
-              <a href="#" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">Contact</a>
+            <nav className="hidden md:flex gap-6">
+              <button 
+                onClick={() => handleSectionClick('home')} 
+                className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
+              >
+                Home
+              </button>
+              <button 
+                onClick={() => handlePageClick('about')} 
+                className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
+              >
+                About Us
+              </button>
+              <button 
+                onClick={() => handleSectionClick('services')} 
+                className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
+              >
+                Services
+              </button>
+              <button 
+                onClick={() => handleSectionClick('pricing')} 
+                className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
+              >
+                Pricing
+              </button>
+              <button 
+                onClick={() => handlePageClick('contact')} 
+                className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
+              >
+                Contact
+              </button>
             </nav>
           </div>
 
           {/* Right side - CTA Button */}
           <div className="flex items-center gap-4">
             {/* Desktop Book a Pickup Button */}
-           <Button className="rounded-full bg-gradient-to-r to-[#0B5A33] from-[#0D8E4B]">
-                Book a Pickup 
-                <motion.span 
-                  className="ml-2"
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ 
-                    repeat: Infinity, 
-                    duration: 1.5,
-                    repeatDelay: 2
-                  }}
-                >
-                  <ChevronRight size={20}/>
-                </motion.span>
-              </Button>
+            <Button className="rounded-full bg-gradient-to-r to-[#0B5A33] from-[#0D8E4B]">
+               <Link href="http://wa.me/2347079100046">
+                  Book a Pickup 
+                  </Link>
+              <motion.span 
+                className="ml-2"
+                animate={{ x: [0, 5, 0] }}
+                transition={{ 
+                  repeat: Infinity, 
+                  duration: 1.5,
+                  repeatDelay: 2
+                }}
+              >
+                <ChevronRight size={20}/>
+              </motion.span>
+            </Button>
+            
             {/* Mobile menu button */}
             <Button 
               variant="ghost" 
@@ -84,7 +131,7 @@ export function Header() {
               <div className="flex items-center justify-between border-b pb-4">
                 <div className="flex items-center gap-2">
                   <Image src="/logo.png" alt="Company Logo" width={32} height={32} className="w-8 h-8"/>
-                  <span className="text-lg font-bold text-gray-900">YourCompany</span>
+                  <span className="text-lg font-bold text-gray-900">Lumina Green 360</span>
                 </div>
                 <Button 
                   variant="ghost" 
@@ -98,29 +145,56 @@ export function Header() {
               
               {/* Mobile Navigation */}
               <nav className="flex flex-col gap-4 flex-1">
-                <a href="#" className="text-gray-700 hover:text-gray-900 font-medium text-lg py-2 transition-colors" onClick={() => setMobileMenuOpen(false)}>Home</a>
-                <a href="#" className="text-gray-700 hover:text-gray-900 font-medium text-lg py-2 transition-colors" onClick={() => setMobileMenuOpen(false)}>About Us</a>
-                <a href="#" className="text-gray-700 hover:text-gray-900 font-medium text-lg py-2 transition-colors" onClick={() => setMobileMenuOpen(false)}>Services</a>
-                <a href="#" className="text-gray-700 hover:text-gray-900 font-medium text-lg py-2 transition-colors" onClick={() => setMobileMenuOpen(false)}>Pricing</a>
-                <a href="#" className="text-gray-700 hover:text-gray-900 font-medium text-lg py-2 transition-colors" onClick={() => setMobileMenuOpen(false)}>Contact</a>
+                <button 
+                  onClick={() => handleSectionClick('home')} 
+                  className="text-gray-700 hover:text-gray-900 font-medium text-lg py-2 transition-colors text-left"
+                >
+                  Home
+                </button>
+                <button 
+                  onClick={() => handlePageClick('about')} 
+                  className="text-gray-700 hover:text-gray-900 font-medium text-lg py-2 transition-colors text-left"
+                >
+                  About Us
+                </button>
+                <button 
+                  onClick={() => handleSectionClick('services')} 
+                  className="text-gray-700 hover:text-gray-900 font-medium text-lg py-2 transition-colors text-left"
+                >
+                  Services
+                </button>
+                <button 
+                  onClick={() => handleSectionClick('pricing')} 
+                  className="text-gray-700 hover:text-gray-900 font-medium text-lg py-2 transition-colors text-left"
+                >
+                  Pricing
+                </button>
+                <button 
+                  onClick={() => handlePageClick('contact')} 
+                  className="text-gray-700 hover:text-gray-900 font-medium text-lg py-2 transition-colors text-left"
+                >
+                  Contact
+                </button>
               </nav>
 
               {/* Mobile CTA Button */}
               <div className="border-t pt-4">
-                <Button className="rounded-full bg-gradient-to-r to-[#0B5A33] from-[#0D8E4B]">
-                Book a Pickup 
-                <motion.span 
-                  className="ml-2"
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ 
-                    repeat: Infinity, 
-                    duration: 1.5,
-                    repeatDelay: 2
-                  }}
-                >
-                  <ChevronRight size={20}/>
-                </motion.span>
-              </Button>
+                <Button className="rounded-full bg-gradient-to-r to-[#0B5A33] from-[#0D8E4B] w-full">
+                  <Link href="http://wa.me/2347079100046">
+                  Book a Pickup 
+                  </Link>
+                  <motion.span 
+                    className="ml-2"
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ 
+                      repeat: Infinity, 
+                      duration: 1.5,
+                      repeatDelay: 2
+                    }}
+                  >
+                    <ChevronRight size={20}/>
+                  </motion.span>
+                </Button>
               </div>
             </div>
           </div>
