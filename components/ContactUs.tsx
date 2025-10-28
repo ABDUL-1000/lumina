@@ -171,7 +171,7 @@ export default function ContactUsView() {
               {/* Status Messages */}
               {submitStatus === "success" && (
                 <div className="p-3 bg-green-100 text-green-700 rounded-md text-sm">
-                  ✅ Thank you! Your email client has opened.. Please send the message to luminagreen360@gmail.com
+                  ✅ Thank you! Your email client has opened. Please send the message to luminagreen360@gmail.com
                 </div>
               )}
               
